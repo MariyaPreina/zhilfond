@@ -25,20 +25,23 @@
                 <div v-if="message" :class="$style.emptyText">{{ message }}</div>
             </transition>
 
-            <div :class="$style.listWrapper">
-                <ul :class="$style.list">
-                    <li
-                        v-for="card in cards"
-                        :key="`${card.id}-${card.name}`"
-                        :class="$style.listItem"
-                    >
-                        <UserSearchCard
-                            :user="card"
-                            @onClick="$emit('on-click', $event)"
-                        />
-                    </li>
-                </ul>
-            </div>
+            <transition name="fade" mode="out-in">
+                <div v-if="cards.length" :class="$style.listWrapper">
+                    <ul :class="$style.list">
+                        <li
+                            v-for="card in cards"
+                            :key="`${card.id}-${card.name}`"
+                            :class="$style.listItem"
+                        >
+                            <UserSearchCard
+                                :user="card"
+                                :active="activeUser ? card.id === activeUser.id : false"
+                                @onClick="$emit('on-click', $event)"
+                            />
+                        </li>
+                    </ul>
+                </div>
+            </transition>
         </div>
     </div>
 </template>
@@ -69,7 +72,12 @@ export default {
         message: {
             type: String,
             default: '',
-        }
+        },
+
+        activeUser: {
+            type: Object,
+            default: () => ({}),
+        },
     },
 
     data() {

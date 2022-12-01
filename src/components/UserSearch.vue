@@ -6,6 +6,7 @@
                 :cards="users"
                 :status="status"
                 :message="message"
+                :active-user="selectedUser"
                 @onChange="handleChange"
                 @onClick="handleClick"
             />
