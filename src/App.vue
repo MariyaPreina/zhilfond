@@ -1,26 +1,30 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <TheHeader />
+  <UserSearch />
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import TheHeader from '@/components/TheHeader';
+import UserSearch from '@/components/UserSearch';
 
 export default {
-  name: "App",
+  name: 'App',
+
+  metaInfo: {
+    title: 'Жилфонд | Поиск сотрудников'
+  },
+
   components: {
-    HelloWorld,
+    TheHeader,
+    UserSearch,
+  },
+
+  created(){
+    document.title = `${process.env.VUE_APP_TITLE}`;
   },
 };
 </script>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="scss" module>
+
 </style>
